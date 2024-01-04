@@ -281,6 +281,29 @@ CREATE TABLE `tb_newbee_mall_shopping_cart_item`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for tb_newbee_mall_user_message
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_newbee_mall_user_message`;
+CREATE TABLE `tb_newbee_mall_user_message`  (
+  `message_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '消息主键id',
+  `user_id` bigint(20) NOT NULL COMMENT '用户id',
+  `goods_id` bigint(20) NOT NULL COMMENT '商品id',
+  `seller` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '售卖商家',
+  `platform` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '平台',
+  `current_price` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '当前价格',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '消息创建时间',
+  PRIMARY KEY (`message_id`) USING BTREE,
+  INDEX `idx_user_id`(`user_id`) USING BTREE,
+  INDEX `idx_goods_id`(`goods_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_newbee_mall_user_message
+-- ----------------------------
+INSERT INTO `tb_newbee_mall_user_message` VALUES (1, 1, 101, '商家1', '平台A', 99.99, '2023-01-04 12:00:00');
+INSERT INTO `tb_newbee_mall_user_message` VALUES (2, 2, 102, '商家2', '平台B', 199.99, '2023-01-04 12:15:00');
+
+-- ----------------------------
 -- Table structure for tb_newbee_mall_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_newbee_mall_user`;

@@ -2,8 +2,10 @@ package ltd.newbee.mall.service;
 
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.entity.MallUser;
+import ltd.newbee.mall.entity.Message;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -51,4 +53,11 @@ public interface NewBeeMallUserService {
      * @return
      */
     Boolean lockUsers(Integer[] ids, int lockStatus);
+    /**
+     * 获取用户消息列表
+     *
+     * @param userId 用户ID
+     * @return 用户消息列表
+     */
+    List<Message> getUserMessages(Long userId);
 }

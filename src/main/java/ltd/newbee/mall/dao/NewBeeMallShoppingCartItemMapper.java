@@ -22,6 +22,8 @@ public interface NewBeeMallShoppingCartItemMapper {
 
     int updateByPrimaryKeySelective(NewBeeMallShoppingCartItem record);
 
+    // 设置用户商品价格下限
+    void setUserLowPrice(@Param("userId") Long userId, @Param("goodsId") Long goodsId, @Param("lowPrice") int lowPrice);
     int updateByPrimaryKey(NewBeeMallShoppingCartItem record);
 
     int deleteBatch(List<Long> ids);

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.MessageMapper">
+
+    <!-- 查询用户消息列表 -->
+    <select id="getUserMessages" resultType="Message">
+        SELECT
+        message_id AS messageId,
+        goods_id AS goodsId,
+        seller,
+        platform,
+        current_price AS currentPrice
+        FROM
+        tb_newbee_mall_message
+        WHERE
+        user_id = #{userId}
+    </select>
+
+    <!-- 其他消息相关的数据库操作，根据需求添加 -->
+
+</mapper>

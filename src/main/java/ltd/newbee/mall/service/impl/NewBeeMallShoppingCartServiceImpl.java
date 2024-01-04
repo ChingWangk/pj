@@ -7,6 +7,7 @@ import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.dao.NewBeeMallShoppingCartItemMapper;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
+import ltd.newbee.mall.service.MessageService;
 import ltd.newbee.mall.service.NewBeeMallShoppingCartService;
 import ltd.newbee.mall.util.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class NewBeeMallShoppingCartServiceImpl implements NewBeeMallShoppingCart
 
     @Autowired
     private NewBeeMallShoppingCartItemMapper newBeeMallShoppingCartItemMapper;
+
+    @Autowired
+    private NewBeeMallShoppingCartServiceImpl shoppingCartService;
+
+    @Autowired
+    private MessageService messageService;
 
     @Autowired
     private NewBeeMallGoodsMapper newBeeMallGoodsMapper;
@@ -53,6 +60,12 @@ public class NewBeeMallShoppingCartServiceImpl implements NewBeeMallShoppingCart
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();
+    }
+
+    // 设置用户商品价格下限
+
+    public String setUserLowPrice(Long userId, Long goodsId, int lowPrice) {
+        return shoppingCartService.setUserLowPrice(userId, goodsId, lowPrice);
     }
 
     @Override

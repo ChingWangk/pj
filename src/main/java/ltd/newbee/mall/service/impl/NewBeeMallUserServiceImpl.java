@@ -5,6 +5,8 @@ import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.dao.MallUserMapper;
 import ltd.newbee.mall.entity.MallUser;
+import ltd.newbee.mall.entity.Message;
+import ltd.newbee.mall.service.MessageService;
 import ltd.newbee.mall.service.NewBeeMallUserService;
 import ltd.newbee.mall.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
 
     @Autowired
     private MallUserMapper mallUserMapper;
+    @Autowired
+    private MessageService messageService;  // 依赖消息服务
 
     @Override
     public PageResult getNewBeeMallUsersPage(PageQueryUtil pageUtil) {
@@ -26,6 +30,12 @@ public class NewBeeMallUserServiceImpl implements NewBeeMallUserService {
         int total = mallUserMapper.getTotalMallUsers(pageUtil);
         PageResult pageResult = new PageResult(mallUsers, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
+    }
+
+    @Override
+    public List<Message> getUserMessages(Long userId) {
+        // 获取用户消息列表
+        return messageService.getMessageList(userId);
     }
 
     @Override

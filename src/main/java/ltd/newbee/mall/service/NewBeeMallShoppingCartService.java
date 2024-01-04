@@ -1,5 +1,4 @@
 package ltd.newbee.mall.service;
-
 import ltd.newbee.mall.controller.vo.NewBeeMallShoppingCartItemVO;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
 
