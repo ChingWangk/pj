@@ -2,6 +2,26 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- !!!!!!!!!!!!!!Table structure for tb_newbee_mall_shopper_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_newbee_mall_shopper_user`;
+CREATE TABLE `tb_newbee_mall_shopper_user`  (
+                                              `shopper_user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商家id',
+                                              `login_user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家登陆名称',
+                                              `login_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家登陆密码',
+                                              `nick_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家显示昵称',
+                                              `locked` tinyint(4) NULL DEFAULT 0 COMMENT '是否锁定 0未锁定 1已锁定无法登陆',
+                                              PRIMARY KEY (`shopper_user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- !!!!!!!!!!!!!!!!!!Records of tb_newbee_mall_shopper_user
+-- ----------------------------
+INSERT INTO `tb_newbee_mall_shopper_user` VALUES (1, 'shangjia1', 'e10adc3949ba59abbe56e057f20f883e', '邯郸', 0);
+INSERT INTO `tb_newbee_mall_shopper_user` VALUES (2, 'shangjia2', 'e10adc3949ba59abbe56e057f20f883e', '江湾', 0);
+INSERT INTO `tb_newbee_mall_shopper_user` VALUES (3, 'shangjia3', 'e10adc3949ba59abbe56e057f20f883e', '张江', 0);
+
+-- ----------------------------
 -- Table structure for tb_newbee_mall_admin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_newbee_mall_admin_user`;
@@ -241,6 +261,22 @@ CREATE TABLE `tb_newbee_mall_shopping_cart_item`  (
   `is_deleted` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识字段(0-未删除 1-已删除)',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最新修改时间',
+  PRIMARY KEY (`cart_item_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- !!!!!!!!!!!!!Table structure for tb_newbee_mall_shopping_cart_item
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_newbee_mall_shopping_cart_item`;
+CREATE TABLE `tb_newbee_mall_shopping_cart_item`  (
+  `cart_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '购物项主键id',
+  `user_id` bigint(20) NOT NULL COMMENT '用户主键id',
+  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '关联商品id',
+  `goods_count` int(11) NOT NULL DEFAULT 1 COMMENT '数量(最大为5)',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识字段(0-未删除 1-已删除)',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最新修改时间',
+  `low_price` int(11) NOT NULL DEFAULT 1 COMMENT '用户设置的最低价格',
   PRIMARY KEY (`cart_item_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
