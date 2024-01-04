@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ltd.newbee.mall.dao.ShopperUserMapper">
-  <resultMap id="BaseResultMap" type="ltd.newbee.mall.entity.AdminUser">
+  <resultMap id="BaseResultMap" type="ltd.newbee.mall.entity.ShopperUser">
     <id column="shopper_user_id" jdbcType="INTEGER" property="shopperUserId" />
     <result column="login_user_name" jdbcType="VARCHAR" property="loginUserName" />
     <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
@@ -25,7 +25,7 @@
     from tb_newbee_mall_shopper_user
     where shopper_user_id = #{shopperUserId,jdbcType=INTEGER}
   </select>
-  <insert id="insert" parameterType="ltd.newbee.mall.entity.AdminUser">
+  <insert id="insert" parameterType="ltd.newbee.mall.entity.ShopperUser">
     insert into tb_newbee_mall_shopper_user (shopper_user_id, login_user_name, login_password,
       nick_name, locked)
     values (#{shopperUserId,jdbcType=INTEGER}, #{loginUserName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
