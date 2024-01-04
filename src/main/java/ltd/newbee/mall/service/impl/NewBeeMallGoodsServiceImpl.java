@@ -16,6 +16,9 @@ import ltd.newbee.mall.util.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import ltd.newbee.mall.dao.GoodsPriceHistoryMapper;
+import ltd.newbee.mall.entity.GoodsPriceHistory;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +31,8 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
     private NewBeeMallGoodsMapper goodsMapper;
     @Autowired
     private GoodsCategoryMapper goodsCategoryMapper;
+    @Autowired
+    private GoodsPriceHistoryMapper goodsPriceHistoryMapper;
 
     @Override
     public PageResult getNewBeeMallGoodsPage(PageQueryUtil pageUtil) {
@@ -98,6 +103,13 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
         return newBeeMallGoods;
     }
 
+    @Override
+    public List<GoodsPriceHistory> getGoodsPriceHistory(Long goodsId, Date startTime, Date endTime) {
+        // 调用数据库操作以检索价格历史记录
+        List<GoodsPriceHistory> priceHistory = goodsPriceHistoryMapper.getGoodsPriceHistory(goodsId, startTime, endTime);
+        return priceHistory;
+
+    }
     @Override
     public Boolean batchUpdateSellStatus(Long[] ids, int sellStatus) {
         return goodsMapper.batchUpdateSellStatus(ids, sellStatus) > 0;

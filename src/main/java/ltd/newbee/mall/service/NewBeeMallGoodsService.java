@@ -1,9 +1,11 @@
 package ltd.newbee.mall.service;
 
+import ltd.newbee.mall.entity.GoodsPriceHistory;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
 
+import java.util.Date;
 import java.util.List;
 
 public interface NewBeeMallGoodsService {
@@ -46,6 +48,8 @@ public interface NewBeeMallGoodsService {
      * @return
      */
     NewBeeMallGoods getNewBeeMallGoodsById(Long id);
+
+    List<GoodsPriceHistory> getGoodsPriceHistory(Long goodsId, Date startTime, Date endTime);
 
     /**
      * 批量修改销售状态(上架下架)

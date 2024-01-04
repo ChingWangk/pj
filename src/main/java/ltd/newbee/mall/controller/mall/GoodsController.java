@@ -8,9 +8,13 @@ import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.service.NewBeeMallCategoryService;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
+import ltd.newbee.mall.entity.GoodsPriceHistory;
+import ltd.newbee.mall.service.GoodsPriceHistoryService;
 import ltd.newbee.mall.util.BeanUtil;
 import ltd.newbee.mall.util.PageQueryUtil;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 @Controller
 public class GoodsController {
@@ -29,6 +35,8 @@ public class GoodsController {
     @Resource
     private NewBeeMallCategoryService newBeeMallCategoryService;
 
+    @Resource
+    private GoodsPriceHistoryService goodsPriceHistoryService;
     @GetMapping({"/search", "/search.html"})
     public String searchPage(@RequestParam Map<String, Object> params, HttpServletRequest request) {
         if (ObjectUtils.isEmpty(params.get("page"))) {
@@ -77,6 +85,24 @@ public class GoodsController {
         goodsDetailVO.setGoodsCarouselList(goods.getGoodsCarousel().split(","));
         request.setAttribute("goodsDetail", goodsDetailVO);
         return "mall/detail";
+    }
+
+    // 价格变化查询接口
+    @GetMapping("/goods/priceHistory/{goodsId}")
+    public String getGoodsPriceHistory(@PathVariable("goodsId") Long goodsId,
+                                       @RequestParam(name = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date startTime,
+                                       @RequestParam(name = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date endTime,
+                                       Model model) {
+        // Validate input if necessary
+
+        // Call the service to retrieve price history
+        List<GoodsPriceHistory> priceHistory = goodsPriceHistoryService.getGoodsPriceHistory(goodsId, startTime, endTime);
+
+        // Add the result to the model to be displayed in the view
+        model.addAttribute("priceHistory", priceHistory);
+
+        // Return the view name to display the price history
+        return "goods/price_history";  // Assuming you have a corresponding view template
     }
 
 }
