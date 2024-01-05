@@ -11,11 +11,11 @@
     </resultMap>
 
     <select id="getGoodsPriceHistory" resultMap="goodsPriceHistoryMap">
-        SELECT price_history_id, goods_id, price, timestamp
+        SELECT price_history_id, goods_id, price, create_time
         FROM tb_newbee_mall_goods_price_history
         WHERE goods_id = #{goodsId}
-          AND timestamp BETWEEN #{startTime} AND #{endTime}
-        ORDER BY timestamp ASC;
+          AND create_time BETWEEN #{startTime} AND #{endTime}
+        ORDER BY create_time ASC;
     </select>
 
     <!-- Other SQL queries... -->
