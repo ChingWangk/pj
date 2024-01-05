@@ -10,6 +10,8 @@ public class NewBeeMallGoods {
     private String goodsName;
 
     private String goodsIntro;
+    private String storeName;
+    private String platformName;
 
     private Long goodsCategoryId;
 
@@ -63,6 +65,21 @@ public class NewBeeMallGoods {
         this.goodsIntro = goodsIntro == null ? null : goodsIntro.trim();
     }
 
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName == null ? null : storeName.trim();
+    }
+
+    public String getPlatformName() {
+        return platformName;
+    }
+
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName == null ? null : platformName.trim();
+    }
     public Long getGoodsCategoryId() {
         return goodsCategoryId;
     }
@@ -187,6 +204,8 @@ public class NewBeeMallGoods {
         sb.append(", createTime=").append(createTime);
         sb.append(", updateUser=").append(updateUser);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", storeName=").append(storeName);
+        sb.append(", platformName=").append(platformName);
         sb.append(", goodsDetailContent=").append(goodsDetailContent);
         sb.append("]");
         return sb.toString();

@@ -17,6 +17,8 @@ public class NewBeeMallGoodsDetailVO implements Serializable {
     private String goodsCoverImg;
 
     private String[] goodsCarouselList;
+    private String storeName;
+    private String platformName;
 
     private Integer sellingPrice;
 
