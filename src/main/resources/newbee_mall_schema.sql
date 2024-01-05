@@ -133,15 +133,15 @@ CREATE TABLE `tb_newbee_mall_goods_info`  (
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品添加时间',
   `update_user` int(11) NOT NULL DEFAULT 0 COMMENT '修改者主键id',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品修改时间',
-  nick_name VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属商家',
-  platform_name VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属平台',
+  `nick_name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属商家',
+  `platform_name` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属平台',
   PRIMARY KEY (`goods_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10896 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_newbee_mall_goods_info
 -- ----------------------------
-INSERT INTO `tb_newbee_mall_goods_info` (`goods_id`, `goods_name`, `goods_intro`, `goods_category_id`, `goods_cover_img`, `goods_carousel`, `goods_detail_content`, `original_price`, `selling_price`, `stock_num`, `tag`, `goods_sell_status`, `create_user`, `create_time`, `update_user`, `update_time`)
+INSERT INTO `tb_newbee_mall_goods_info` (`goods_id`, `goods_name`, `goods_intro`, `goods_category_id`, `goods_cover_img`, `goods_carousel`, `goods_detail_content`, `original_price`, `selling_price`, `stock_num`, `tag`, `goods_sell_status`, `create_user`, `create_time`, `update_user`, `update_time`,`nick_name`,`platform_name`)
 VALUES
 	    (10003,'无印良品 MUJI 基础润肤化妆水','滋润型 400ml',0,'/goods-img/87446ec4-e534-4b49-9f7d-9bea34665284.jpg','/goods-img/87446ec4-e534-4b49-9f7d-9bea34665284.jpg','<p>商品介绍加载中...</p>',100,100,1000,'',1,0,'2019-09-18 13:18:47',0,'2020-10-13 10:41:59','马云家','淘宝'),
     	(10004,'无印良品 MUJI 柔和洁面泡沫','120g',0,'/goods-img/45854bdd-2ca5-423c-a609-3d336d9322b4.jpg','/goods-img/45854bdd-2ca5-423c-a609-3d336d9322b4.jpg','<p>商品介绍加载中...</p>',45,45,999,'',0,0,'2019-09-18 13:18:47',0,'2020-10-13 10:41:59','马云家','淘宝'),
