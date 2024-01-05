@@ -17,20 +17,20 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="storeName"/>
         <result column="platform_name" jdbcType="VARCHAR" property="platformName"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="ltd.newbee.mall.entity.NewBeeMallGoods">
         <result column="goods_detail_content" jdbcType="LONGVARCHAR" property="goodsDetailContent"/>
     </resultMap>
     <sql id="Base_Column_List">
-    goods_id, goods_name, goods_intro,goods_category_id, goods_cover_img, goods_carousel, original_price,
-    selling_price, stock_num, tag, goods_sell_status, create_user, create_time, update_user, 
-    update_time,store_name, platform_name
-  </sql>
+        goods_id, goods_name, goods_intro,goods_category_id, goods_cover_img, goods_carousel, original_price,
+        selling_price, stock_num, tag, goods_sell_status, create_user, create_time, update_user,
+        update_time,nick_name, platform_name
+    </sql>
     <sql id="Blob_Column_List">
-    goods_detail_content
-  </sql>
+        goods_detail_content
+    </sql>
 
     <insert id="batchInsert">
         INSERT INTO tb_newbee_mall_goods_info(goods_name, goods_intro, goods_category_id,goods_cover_img,
@@ -184,24 +184,24 @@
         </where>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from tb_newbee_mall_goods_info
-    where goods_id = #{goodsId,jdbcType=BIGINT}
-  </delete>
+        delete from tb_newbee_mall_goods_info
+        where goods_id = #{goodsId,jdbcType=BIGINT}
+    </delete>
     <insert id="insert" parameterType="ltd.newbee.mall.entity.NewBeeMallGoods">
-    insert into tb_newbee_mall_goods_info (goods_id, goods_name, goods_intro, 
-      goods_cover_img, goods_carousel, original_price, 
-      selling_price, stock_num, tag, 
-      goods_sell_status, create_user, create_time, 
-      update_user, update_time,store_name,platform_name, goods_detail_content
-      )
-    values (#{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsIntro,jdbcType=VARCHAR}, 
-      #{goodsCoverImg,jdbcType=VARCHAR}, #{goodsCarousel,jdbcType=VARCHAR}, #{originalPrice,jdbcType=INTEGER}, 
-      #{sellingPrice,jdbcType=INTEGER}, #{stockNum,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, 
-      #{goodsSellStatus,jdbcType=TINYINT}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{store_name,jdbcType=VARCHAR},
+        insert into tb_newbee_mall_goods_info (goods_id, goods_name, goods_intro,
+        goods_cover_img, goods_carousel, original_price,
+        selling_price, stock_num, tag,
+        goods_sell_status, create_user, create_time,
+        update_user, update_time,nick_name,platform_name, goods_detail_content
+        )
+        values (#{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsIntro,jdbcType=VARCHAR},
+        #{goodsCoverImg,jdbcType=VARCHAR}, #{goodsCarousel,jdbcType=VARCHAR}, #{originalPrice,jdbcType=INTEGER},
+        #{sellingPrice,jdbcType=INTEGER}, #{stockNum,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR},
+        #{goodsSellStatus,jdbcType=TINYINT}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{nick_name,jdbcType=VARCHAR},
         #{platform_name,jdbcType=VARCHAR},#{goodsDetailContent,jdbcType=LONGVARCHAR}
-      )
-  </insert>
+        )
+    </insert>
     <insert id="insertSelective" parameterType="ltd.newbee.mall.entity.NewBeeMallGoods">
         insert into tb_newbee_mall_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -250,8 +250,8 @@
             <if test="updateTime != null">
                 update_time,
             </if>
-            <if test="store_name != null">
-                store_name,
+            <if test="nick_name != null">
+                nick_name,
             </if>
             <if test="platform_name != null">
                 platform_name,
@@ -306,8 +306,8 @@
             <if test="updateTime != null">
                 #{updateTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="store_name != null">
-                #{store_name,jdbcType=VARCHAR},
+            <if test="nick_name != null">
+                #{nick_name,jdbcType=VARCHAR},
             </if>
             <if test="platform_name != null">
                 #{platform_name,jdbcType=VARCHAR},
@@ -362,8 +362,8 @@
             <if test="updateTime != null">
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="store_name != null">
-                #{store_name,jdbcType=VARCHAR},
+            <if test="nick_name != null">
+                #{nick_name,jdbcType=VARCHAR},
             </if>
             <if test="platform_name != null">
                 #{platform_name,jdbcType=VARCHAR},
@@ -375,42 +375,42 @@
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="ltd.newbee.mall.entity.NewBeeMallGoods">
-    update tb_newbee_mall_goods_info
-    set goods_name = #{goodsName,jdbcType=VARCHAR},
-      goods_intro = #{goodsIntro,jdbcType=VARCHAR},
-      goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},
-      goods_carousel = #{goodsCarousel,jdbcType=VARCHAR},
-      original_price = #{originalPrice,jdbcType=INTEGER},
-      selling_price = #{sellingPrice,jdbcType=INTEGER},
-      stock_num = #{stockNum,jdbcType=INTEGER},
-      tag = #{tag,jdbcType=VARCHAR},
-      goods_sell_status = #{goodsSellStatus,jdbcType=TINYINT},
-      create_user = #{createUser,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_user = #{updateUser,jdbcType=INTEGER},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-        store_name = #{store_name,jdbcType=VARCHAR},
+        update tb_newbee_mall_goods_info
+        set goods_name = #{goodsName,jdbcType=VARCHAR},
+        goods_intro = #{goodsIntro,jdbcType=VARCHAR},
+        goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},
+        goods_carousel = #{goodsCarousel,jdbcType=VARCHAR},
+        original_price = #{originalPrice,jdbcType=INTEGER},
+        selling_price = #{sellingPrice,jdbcType=INTEGER},
+        stock_num = #{stockNum,jdbcType=INTEGER},
+        tag = #{tag,jdbcType=VARCHAR},
+        goods_sell_status = #{goodsSellStatus,jdbcType=TINYINT},
+        create_user = #{createUser,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        nick_name = #{nick_name,jdbcType=VARCHAR},
         platform_name = #{platform_name,jdbcType=VARCHAR},
-      goods_detail_content = #{goodsDetailContent,jdbcType=LONGVARCHAR}
-    where goods_id = #{goodsId,jdbcType=BIGINT}
-  </update>
+        goods_detail_content = #{goodsDetailContent,jdbcType=LONGVARCHAR}
+        where goods_id = #{goodsId,jdbcType=BIGINT}
+    </update>
     <update id="updateByPrimaryKey" parameterType="ltd.newbee.mall.entity.NewBeeMallGoods">
-    update tb_newbee_mall_goods_info
-    set goods_name = #{goodsName,jdbcType=VARCHAR},
-      goods_intro = #{goodsIntro,jdbcType=VARCHAR},
-      goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},
-      goods_carousel = #{goodsCarousel,jdbcType=VARCHAR},
-      original_price = #{originalPrice,jdbcType=INTEGER},
-      selling_price = #{sellingPrice,jdbcType=INTEGER},
-      stock_num = #{stockNum,jdbcType=INTEGER},
-      tag = #{tag,jdbcType=VARCHAR},
-      goods_sell_status = #{goodsSellStatus,jdbcType=TINYINT},
-      create_user = #{createUser,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_user = #{updateUser,jdbcType=INTEGER},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-        store_name = #{store_name,jdbcType=VARCHAR},
+        update tb_newbee_mall_goods_info
+        set goods_name = #{goodsName,jdbcType=VARCHAR},
+        goods_intro = #{goodsIntro,jdbcType=VARCHAR},
+        goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},
+        goods_carousel = #{goodsCarousel,jdbcType=VARCHAR},
+        original_price = #{originalPrice,jdbcType=INTEGER},
+        selling_price = #{sellingPrice,jdbcType=INTEGER},
+        stock_num = #{stockNum,jdbcType=INTEGER},
+        tag = #{tag,jdbcType=VARCHAR},
+        goods_sell_status = #{goodsSellStatus,jdbcType=TINYINT},
+        create_user = #{createUser,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=INTEGER},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        nick_name = #{nick_name,jdbcType=VARCHAR},
         platform_name = #{platform_name,jdbcType=VARCHAR}
-    where goods_id = #{goodsId,jdbcType=BIGINT}
-  </update>
+        where goods_id = #{goodsId,jdbcType=BIGINT}
+    </update>
 </mapper>

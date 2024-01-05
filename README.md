@@ -1,14 +1,13 @@
-# 11.29.19.21更新说明
-新增对应商家页面的HTML文件组：shopper，新增对应商家页面的controller文件组：shopper
-由于数据未更改，Service和DAO等层暂无法改动，同时管理未登录时页面跳转的js文件也暂无法更改。
-建议优先修改数据库及相应entity
+
 # 运行说明
-1. properties处修改sql库，端口及密码
-2. 测试MySQL连接，本项目采用MySQL
-3. 运行sql文件创建基本数据库
-4. 正常运行
+
+1. 本项目采用MySQL
+2. 运行newbee_mall_schema.sql文件创建基本数据库 
+3. 终端进入newbee-mall目录下运行‘java -jar target/newbee-mall-1.0.0-SNAPSHOT.jar’
+4. 浏览器打开网址：http://localhost:8080/
+
 # 运行时
-1. 密码采用md5加密，数据库中默认密码为123456，或者采用md5解密器查看密码
+1. 数据库中默认密码为123456
 2. 管理员和用户默认账号及加密后的密码均在sql文件中有写
 
 # 以下是原项目介绍

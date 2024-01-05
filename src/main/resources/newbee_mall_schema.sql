@@ -133,7 +133,7 @@ CREATE TABLE `tb_newbee_mall_goods_info`  (
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品添加时间',
   `update_user` int(11) NOT NULL DEFAULT 0 COMMENT '修改者主键id',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '商品修改时间',
-  store_name VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属商家',
+  nick_name VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属商家',
   platform_name VARCHAR(50) NOT NULL DEFAULT '' COMMENT '商品所属平台',
   PRIMARY KEY (`goods_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10896 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
