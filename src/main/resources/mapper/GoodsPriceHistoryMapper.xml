@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="your.package.name.GoodsPriceHistoryMapper">
-    <resultMap id="goodsPriceHistoryMap" type="your.package.name.GoodsPriceHistory">
+<mapper namespace="ltd.newbee.mall.dao.GoodsPriceHistoryMapper">
+    <resultMap id="goodsPriceHistoryMap" type="ltd.newbee.mall.entity.GoodsPriceHistory">
         <id property="id" column="id" />
         <result property="goodsId" column="goods_id" />
         <result property="price" column="price" />

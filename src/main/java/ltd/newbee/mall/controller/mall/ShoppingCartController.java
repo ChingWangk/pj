@@ -7,8 +7,10 @@ import ltd.newbee.mall.controller.vo.NewBeeMallShoppingCartItemVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.entity.NewBeeMallShoppingCartItem;
 import ltd.newbee.mall.service.NewBeeMallShoppingCartService;
+import ltd.newbee.mall.service.impl.NewBeeMallShoppingCartServiceImpl;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -21,6 +23,9 @@ import java.util.List;
 
 @Controller
 public class ShoppingCartController {
+
+    @Autowired
+    private NewBeeMallShoppingCartServiceImpl shoppingCartService;
 
     @Resource
     private NewBeeMallShoppingCartService newBeeMallShoppingCartService;
@@ -65,6 +70,13 @@ public class ShoppingCartController {
         }
         //添加失败
         return ResultGenerator.genFailResult(saveResult);
+    }
+
+    @PostMapping("/setUserLowPrice")
+    @ResponseBody
+    public String setUserLowPrice(@RequestParam Long userId, @RequestParam Long goodsId, @RequestParam int lowPrice) {
+        // 调用实例方法
+        return shoppingCartService.setUserLowPrice(userId, goodsId, lowPrice);
     }
 
     @PutMapping("/shop-cart")

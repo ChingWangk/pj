@@ -16,6 +16,13 @@ public class Message {
         this.messageId = messageId;
     }
 
+    public Message(Long userId, String content, Long goodsId, String seller, String platform, BigDecimal currentPrice) {
+        super();
+        this.goodsId = goodsId;
+        this.seller = seller;
+        this.platform = platform;
+        this.currentPrice = currentPrice;
+    }
     public Long getGoodsId() {
         return goodsId;
     }
@@ -47,4 +54,5 @@ public class Message {
     public void setCurrentPrice(BigDecimal currentPrice) {
         this.currentPrice = currentPrice;
     }
+
 }

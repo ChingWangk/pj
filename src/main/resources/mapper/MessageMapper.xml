@@ -2,20 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ltd.newbee.mall.dao.MessageMapper">
 
-    <!-- 查询用户消息列表 -->
-    <select id="getUserMessages" resultType="Message">
-        SELECT
-        message_id AS messageId,
-        goods_id AS goodsId,
-        seller,
-        platform,
-        current_price AS currentPrice
-        FROM
-        tb_newbee_mall_message
-        WHERE
-        user_id = #{userId}
+    <resultMap id="messageResultMap" type="ltd.newbee.mall.entity.Message">
+        <id property="messageId" column="message_id"/>
+        <result property="goodsId" column="goods_id"/>
+        <result property="seller" column="seller"/>
+        <result property="platform" column="platform"/>
+        <result property="currentPrice" column="current_price"/>
+    </resultMap>
+
+    <!-- 根据消息主键id查询消息 -->
+    <select id="selectMessageById" resultMap="messageResultMap">
+        SELECT * FROM tb_newbee_mall_user_message WHERE message_id = #{messageId}
     </select>
 
-    <!-- 其他消息相关的数据库操作，根据需求添加 -->
+    <!-- 插入消息 -->
+    <insert id="insertMessage" parameterType="Message">
+        INSERT INTO tb_newbee_mall_user_message
+        (user_id, goods_id, seller, platform, current_price, create_time)
+        VALUES
+        (#{userId}, #{goodsId}, #{seller}, #{platform}, #{currentPrice}, #{createTime})
+    </insert>
+
+    <!-- 根据用户id查询用户的消息列表 -->
+    <select id="selectMessagesByUserId" resultMap="messageResultMap">
+        SELECT * FROM tb_newbee_mall_user_message WHERE user_id = #{userId}
+    </select>
 
 </mapper>
