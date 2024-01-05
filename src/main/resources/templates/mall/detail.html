@@ -54,7 +54,13 @@
                     <dt>支持</dt>
                     <dd>折旧变现，买新更省钱。<a style="float:none;text-decoration: underline;" href="##">详情</a></dd>
                 </dl>
-
+                <dl>
+                    <dt>商家平台</dt>
+                    <dd>
+                        <th:block th:text="'商家：'+${goodsDetail.nickName}"></th:block>
+                        <th:block th:text="'平台：'+${goodsDetail.platformName}"></th:block>
+                    </dd>
+                </dl>
             </div>
         </div>
         <div class="clear"></div>
